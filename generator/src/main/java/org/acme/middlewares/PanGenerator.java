@@ -10,9 +10,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class PanGenerator {
 
-    private static final int BATCH_SIZE = 1000; // Tamanho do lote
-    private static final int THREAD_POOL_SIZE = 1000; // Número de threads no pool
-
     public List<String> genRandomPansBatch(int batchSize, int quantity, int size) {
         List<String> pans = new ArrayList<>();
         Random random = new Random();
@@ -63,10 +60,6 @@ public class PanGenerator {
             digit -= 9;
         }
         return digit;
-    }
-
-    private static class PanGenerated {
-        String panNumber;
     }
 
 }
