@@ -1,7 +1,6 @@
 package org.acme.entity;
 
-import java.math.BigInteger;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +27,6 @@ public class PanEntity {
 
     private String checkDigit;
 
-    private String createdAt;
+    private LocalDate createdAt;
 
 }

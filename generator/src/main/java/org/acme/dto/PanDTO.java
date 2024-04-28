@@ -1,7 +1,6 @@
 package org.acme.dto;
 
-import java.math.BigInteger;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,5 +19,5 @@ public class PanDTO {
 
     private String checkDigit;
 
-    private String createdAt;
+    private LocalDate createdAt;
 }

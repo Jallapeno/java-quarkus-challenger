@@ -1,8 +1,5 @@
 package org.acme.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.acme.dto.PanDTO;
 import org.acme.entity.PanEntity;
 import org.acme.repository.PanRepository;

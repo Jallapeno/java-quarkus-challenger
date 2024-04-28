@@ -1,9 +1,7 @@
 package org.acme.controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.acme.dto.PanCreateDTO;
@@ -66,14 +64,12 @@ public class PanCreateController {
             List<String> pans = panGenerator.genRandomPansBatch(BATCH_SIZE, quantity, size);
             List<String> pansSaved = new ArrayList<>();
 
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-            Date date = new Date();
-            String dateNowFormated = dateFormat.format(date);
+            LocalDate dateNow = LocalDate.now();
             executorService = Executors.newFixedThreadPool(BATCH_SIZE);
 
             for (int i = 0; i < pans.size(); i += BATCH_SIZE) {
                 List<String> panBatch = pans.subList(i, Math.min(i + BATCH_SIZE, pans.size()));
-                pansSaved.addAll(MakeBatchToSavePans(panBatch, executorService, binStr, dateNowFormated));
+                pansSaved.addAll(MakeBatchToSavePans(panBatch, executorService, binStr, dateNow));
             }
 
             executorService.shutdown();
@@ -93,7 +89,7 @@ public class PanCreateController {
     }
 
     public List<String> MakeBatchToSavePans(List<String> panBatch, ExecutorService executorService, String binStr,
-            String dateNowFormated) {
+            LocalDate dateNowFormated) {
         List<String> pansSaved = new ArrayList<>();
         for (String pan : panBatch) {
             executorService.submit(() -> {
@@ -109,7 +105,7 @@ public class PanCreateController {
     }
 
     @Transactional
-    public void savePan(String pan, String binStr, String dateNowFormated) {
+    public void savePan(String pan, String binStr, LocalDate dateNowFormated) {
         PanDTO newPanDTO = new PanDTO();
         newPanDTO.setBin(binStr);
         String checkDigit = String.valueOf(pan.charAt(pan.length() - 1));
