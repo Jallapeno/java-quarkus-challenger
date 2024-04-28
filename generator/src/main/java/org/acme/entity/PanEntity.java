@@ -27,6 +27,6 @@ public class PanEntity {
 
     private String checkDigit;
 
-    private LocalDate createdAt;
+    private String createdAt;
 
 }

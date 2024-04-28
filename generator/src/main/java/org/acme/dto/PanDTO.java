@@ -19,5 +19,5 @@ public class PanDTO {
 
     private String checkDigit;
 
-    private LocalDate createdAt;
+    private String createdAt;
 }
