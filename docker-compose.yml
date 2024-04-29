@@ -18,6 +18,22 @@ services:
     networks:
       - dock-dbpans-test
 
+  panReportApp:
+    image: 'hytal-wsl/report:1.0.0-SNAPSHOT'
+    build:
+      context: .
+    container_name: panReportApp
+    depends_on:
+      - dbpans
+    environment:
+      - QUARKUS_DATADOURCE_URL=jdbc:postgresql://dbpans:5432/desafiobb
+      - QUARKUS_DATADOURCE_USERNAME=username
+      - QUARKUS_DATADOURCE_PASSWORD=password
+    ports:
+      - 8086:8086
+    networks:
+      - dock-dbpans-test
+
   dbpans:
     image: bitnami/postgresql
     container_name: dbpans
