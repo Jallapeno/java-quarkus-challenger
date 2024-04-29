@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.extern.jackson.Jacksonized;
 
 @Data
-@Jacksonized
 @NoArgsConstructor
 @AllArgsConstructor
+@Jacksonized
 public class BinTotalDTO {
 
     private String bin;
