@@ -1,38 +1,38 @@
 version: '3'
 
 services:
-  panGeneratorApp:
-    image: 'hytal-wsl/generator:1.0.0-SNAPSHOT'
-    build:
-      context: .
-    container_name: panGeneratorApp
-    depends_on:
-      - dbpans
-    environment:
-      - QUARKUS_DATADOURCE_URL=jdbc:postgresql://dbpans:5432/desafiobb
-      - QUARKUS_DATADOURCE_USERNAME=username
-      - QUARKUS_DATADOURCE_PASSWORD=password
-      - QUARKUS_JPA_HIBERNATE_DDL_AUTO=update
-    ports:
-      - 8085:8085
-    networks:
-      - dock-dbpans-test
+  # panGeneratorApp:
+  #   image: 'root/generator:1.0.0-SNAPSHOT'
+  #   build:
+  #     context: .
+  #   container_name: panGeneratorApp
+  #   depends_on:
+  #     - dbpans
+  #   environment:
+  #     - QUARKUS_DATADOURCE_URL=jdbc:postgresql://dbpans:5432/desafiobb
+  #     - QUARKUS_DATADOURCE_USERNAME=username
+  #     - QUARKUS_DATADOURCE_PASSWORD=password
+  #     - QUARKUS_JPA_HIBERNATE_DDL_AUTO=update
+  #   ports:
+  #     - 8085:8085
+  #   networks:
+  #     - dock-dbpans-test
 
-  panReportApp:
-    image: 'hytal-wsl/report:1.0.0-SNAPSHOT'
-    build:
-      context: .
-    container_name: panReportApp
-    depends_on:
-      - dbpans
-    environment:
-      - QUARKUS_DATADOURCE_URL=jdbc:postgresql://dbpans:5432/desafiobb
-      - QUARKUS_DATADOURCE_USERNAME=username
-      - QUARKUS_DATADOURCE_PASSWORD=password
-    ports:
-      - 8086:8086
-    networks:
-      - dock-dbpans-test
+  # panReportApp:
+  #   image: 'root/report:1.0.0-SNAPSHOT'
+  #   build:
+  #     context: .
+  #   container_name: panReportApp
+  #   depends_on:
+  #     - dbpans
+  #   environment:
+  #     - QUARKUS_DATADOURCE_URL=jdbc:postgresql://dbpans:5432/desafiobb
+  #     - QUARKUS_DATADOURCE_USERNAME=username
+  #     - QUARKUS_DATADOURCE_PASSWORD=password
+  #   ports:
+  #     - 8086:8086
+  #   networks:
+  #     - dock-dbpans-test
 
   dbpans:
     image: bitnami/postgresql

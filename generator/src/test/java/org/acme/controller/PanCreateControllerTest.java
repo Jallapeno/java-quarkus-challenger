@@ -17,8 +17,10 @@ import jakarta.ws.rs.core.Response;
 
 import java.util.List;
 
+import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @QuarkusTest
 public class PanCreateControllerTest {
@@ -33,6 +35,10 @@ public class PanCreateControllerTest {
 
     @Mock
     private ExecutorService executorService;
+
+    private static String requestBody = "{\n" +
+            "  \"bin\": \"123456\",\n" +
+            "  \"quantity\": \"1\" \n}";
 
     @BeforeEach
     public void setup() {
@@ -84,6 +90,15 @@ public class PanCreateControllerTest {
         when(panGenerator.genRandomPansBatch(5, 10, 6)).thenReturn(pans);
 
         panCreateController.perform(panCreateDTO, null);
+    }
+
+    @Test
+    void testPanCreateEndpoint() {
+        given().header("Content-type", "application/json")
+                .and().body(requestBody)
+                .when()
+                .post("/v1/pans")
+                .then().statusCode(200).extract().response();
     }
 
 }
